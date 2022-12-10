@@ -19,7 +19,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-label" for="password">Password</label>
+                <div class="d-flex justify-content-between">
+                    <label class="form-label" for="password">Password</label>
+                    <a href="{{ route('password.request') }}">Reset Password!</a>
+                </div>
                 <div class="form-control-wrap">
                     <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
                         <em class="passcode-icon icon-show icon ni ni-eye"></em>
