@@ -21,3 +21,7 @@
     </div>
 </div>
 @endsection
+
+@section('content')
+@include('inc.fund')
+@endsection
