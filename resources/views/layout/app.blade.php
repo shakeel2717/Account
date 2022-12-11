@@ -21,7 +21,7 @@
                     <div class="container-lg wide-xl">
                         <div class="nk-header-wrap">
                             <div class="nk-header-brand">
-                                <a href="html/index.html" class="logo-link">
+                                <a href="{{ route('user.dashboard.index') }}" class="logo-link">
                                     <img class="logo-light logo-img" src="{{ asset('assets/svg/logo-light.svg') }}" srcset="{{ asset('assets/svg/logo-light.svg') }} 2x" alt="logo">
                                     <img class="logo-dark logo-img" src="{{ asset('assets/svg/logo.svg') }}" srcset="{{ asset('assets/svg/logo.svg') }} 2x" alt="logo-dark">
                                 </a>
@@ -109,50 +109,11 @@
                         <div class="nk-content-inner">
                             <div class="nk-aside" data-content="sideNav" data-toggle-overlay="true" data-toggle-screen="lg" data-toggle-body="true">
                                 <div class="nk-sidebar-menu" data-simplebar>
-                                    <ul class="nk-menu">
-                                        <li class="nk-menu-heading">
-                                            <h6 class="overline-title text-primary-alt">Overview</h6>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('user.dashboard.index') }}" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                                <span class="nk-menu-text">Dashboard</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-heading">
-                                            <h6 class="overline-title text-primary-alt">Top Up Funds</h6>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('user.deposit.index') }}" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                                <span class="nk-menu-text">Add Funds</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-heading">
-                                            <h6 class="overline-title text-primary-alt">Account</h6>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('user.profile.index') }}" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                                <span class="nk-menu-text">My Profile</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('user.security.index') }}" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                                <span class="nk-menu-text">Change Password</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-heading">
-                                            <h6 class="overline-title text-primary-alt">Exit</h6>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="javascript:void(0);" onclick="document.getElementById('logout').submit();" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                                <span class="nk-menu-text">Logout</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    @if(auth()->user()->role == 'admin')
+                                    <x-admin.nav />
+                                    @elseif(auth()->user()->role == 'user')
+                                    <x-nav />
+                                    @endif
                                 </div>
                                 <div class="nk-aside-close">
                                     <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
