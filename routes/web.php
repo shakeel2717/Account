@@ -19,3 +19,4 @@ Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->g
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Gateway;
 use App\Models\Group;
+use App\Models\Setting;
 use App\Models\Slab;
 use App\Models\Team;
 use App\Models\User;
@@ -23,10 +24,54 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+
+        User::factory()->create([
+            'name' => 'Administrator',
+            'username' => 'admin',
+            'role' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
         User::factory()->create([
             'name' => 'Shakeel Ahmad',
             'username' => 'shakeel2717',
             'email' => 'shakeel2717@gmail.com',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+
+        User::factory()->create([
+            'name' => 'Test 1',
+            'username' => 'test1',
+            'email' => 'test1@gmail.com',
+            'refer' => 'shakeel2717',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Test 2',
+            'username' => 'test2',
+            'email' => 'test2@gmail.com',
+            'refer' => 'test1',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+
+        User::factory()->create([
+            'name' => 'Test 3',
+            'username' => 'test3',
+            'email' => 'test3@gmail.com',
+            'refer' => 'test2',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+
+        User::factory()->create([
+            'name' => 'Test 4',
+            'username' => 'test4',
+            'email' => 'test4@gmail.com',
+            'refer' => 'test3',
             'password' => Hash::make('asdfasdf'),
         ]);
 
@@ -439,6 +484,21 @@ class DatabaseSeeder extends Seeder
             'group_id' => 1,
             'score' => "4 : 4",
             'odds' => 0.81,
+        ]);
+
+        Setting::factory()->create([
+            'key' => 'first_level',
+            'value' => 5,
+        ]);
+
+        Setting::factory()->create([
+            'key' => 'second_level',
+            'value' => 3,
+        ]);
+
+        Setting::factory()->create([
+            'key' => 'third_level',
+            'value' => 2,
         ]);
     }
 }

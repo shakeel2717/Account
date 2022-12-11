@@ -69,6 +69,9 @@ class TeamController extends Controller
         $transaction->sum = false;
         $transaction->save();
 
+        auth()->user()->status = 'active';
+        auth()->user()->save();
+
 
         return redirect()->route('user.dashboard.index')->with('success', 'Submitted Successfully.');
     }

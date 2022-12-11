@@ -57,6 +57,13 @@
             var total = amount * odds / 100;
             $("#estimated").val(total);
         });
+        $("#amount").change(function() {
+            // updating the estimated value
+            var odds = <?php echo $slab->odds ?>;
+            var amount = $("#amount").val();
+            var total = amount * odds / 100;
+            $("#estimated").val(total);
+        });
     });
 </script>
 @endsection
