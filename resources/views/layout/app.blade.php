@@ -129,7 +129,7 @@
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="{{ route('user.profile.index') }}" class="nk-menu-link">
+                                            <a href="{{ route('user.security.index') }}" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
                                                 <span class="nk-menu-text">Change Password</span>
                                             </a>
