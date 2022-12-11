@@ -10,6 +10,7 @@ Route::redirect('/', '/login');
 
 Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->group(function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::post('deposit/tid', [DepositController::class,'tid'])->name('deposit.tid');
     Route::resource('deposit', DepositController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('security', SecurityController::class);

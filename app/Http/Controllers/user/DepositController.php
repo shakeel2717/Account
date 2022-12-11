@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gateway;
+use App\Models\Tid;
 use Illuminate\Http\Request;
 
 class DepositController extends Controller
@@ -40,6 +41,27 @@ class DepositController extends Controller
         //
     }
 
+
+    public function tid(Request $request)
+    {
+        $validated = $request->validate([
+            'gateway_id' => 'required|numeric|exists:gateways,id',
+            'amount' => 'required|numeric|min:1|max:2000000',
+            'tid' => 'required|numeric|unique:tids',
+        ]);
+
+        // inserting new transaction
+
+        $tid = new Tid();
+        $tid->gateway_id = $validated['gateway_id'];
+        $tid->user_id = auth()->user()->id;
+        $tid->amount = $validated['amount'];
+        $tid->tid = $validated['tid'];
+        $tid->save();
+
+        return redirect()->route('user.dashboard.index')->with('success', 'Your Deposit Request Received. Please wait until your Deposit Approved');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -48,7 +70,8 @@ class DepositController extends Controller
      */
     public function show($id)
     {
-        //
+        $gateway = Gateway::findOrFail($id);
+        return view('user.deposit.show', compact('gateway'));
     }
 
     /**
@@ -71,7 +94,13 @@ class DepositController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'amount' => 'numeric|min:1|max:2000000',
+        ]);
+        $amount = $validated['amount'];
+
+        $gateway = Gateway::findOrFail($id);
+        return view('user.deposit.edit', compact('gateway', 'amount'));
     }
 
     /**

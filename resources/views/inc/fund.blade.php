@@ -30,7 +30,7 @@
                     <p class="text-soft">Please Add Funds into your account to start earning with our platform.</p>
                 </div>
                 <div class="nk-help-action">
-                    <a href="html/subscription/contact.html" class="btn btn-lg btn-outline-primary">Deposit Funds</a>
+                    <a href="{{ route('user.deposit.index') }}" class="btn btn-lg btn-outline-primary">Deposit Funds</a>
                 </div>
             </div>
         </div>
