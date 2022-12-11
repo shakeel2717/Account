@@ -91,7 +91,6 @@
                                                     <li><a href="#" onclick="document.getElementById('logout').submit();"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                                     <form action="{{ route('logout') }}" id="logout" method="POST">
                                                         @csrf
-
                                                     </form>
                                                 </ul>
                                             </div>
@@ -120,6 +119,30 @@
                                                 <span class="nk-menu-text">Dashboard</span>
                                             </a>
                                         </li>
+                                        <li class="nk-menu-heading">
+                                            <h6 class="overline-title text-primary-alt">Account</h6>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('user.profile.index') }}" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                                <span class="nk-menu-text">My Profile</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('user.profile.index') }}" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                                <span class="nk-menu-text">Change Password</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-heading">
+                                            <h6 class="overline-title text-primary-alt">Exit</h6>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="javascript:void(0);" onclick="document.getElementById('logout').submit();" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                                <span class="nk-menu-text">Logout</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="nk-aside-close">
@@ -128,27 +151,8 @@
                             </div>
                             <div class="nk-content-body">
                                 <div class="nk-content-wrap">
-                                    <div class="nk-block-head nk-block-head-sm">
-                                        <div class="nk-block-between">
-                                            <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">Welcome {{ auth()->user()->name }}</h3>
-                                                <div class="nk-block-des text-soft">
-                                                    <p>Welcome to {{ env('APP_NAME') }} Dashboard.</p>
-                                                </div>
-                                            </div>
-                                            <div class="nk-block-head-content">
-                                                <div class="toggle-wrap nk-block-tools-toggle">
-                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                                    <div class="toggle-expand-content" data-content="pageMenu">
-                                                        <ul class="nk-block-tools g-3">
-                                                            <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Statement</span></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @yield('head')
+                                    @yield('content')
                                 </div>
                                 <div class="nk-footer">
                                     <div class="container wide-xl">
@@ -164,6 +168,7 @@
             </div>
         </div>
     </div>
+    <x-alert />
     <script src="{{ asset('assets/js/bundle.js?ver=3.1.0') }}"></script>
     <script src="{{ asset('assets/js/scripts.js?ver=3.1.0') }}"></script>
     <script src="{{ asset('assets/js/charts/gd-default.js?ver=3.1.0') }}"></script>

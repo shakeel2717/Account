@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +21,7 @@ Route::get('/', function () {
 
 Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->group(function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('profile', ProfileController::class);
 });
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
 
 require __DIR__ . '/auth.php';
