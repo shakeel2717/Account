@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bet;
 use App\Models\Group;
 use App\Models\Slab;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -44,6 +45,11 @@ class TeamController extends Controller
             'amount' => 'required|numeric|min:1|max:20000000'
         ]);
 
+        // checking if balance is enough
+        if ($validated['amount'] > balance(auth()->user()->id)) {
+            return redirect()->route('user.dashboard.index')->withErrors("Insufficient balance, Please Add Funds to your account and try again.");
+        }
+
         // inserting this user active bet
         $bet = new Bet();
         $bet->user_id = auth()->user()->id;
@@ -53,7 +59,18 @@ class TeamController extends Controller
         $bet->status = 'active';
         $bet->save();
 
-        return redirect()->route('user.dashboard.index')->with('success','Submitted Successfully.');
+        // adding transaction
+
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->type = "Bet";
+        $transaction->amount = $validated['amount'];
+        $transaction->status = 'approved';
+        $transaction->sum = false;
+        $transaction->save();
+
+
+        return redirect()->route('user.dashboard.index')->with('success', 'Submitted Successfully.');
     }
 
     /**
