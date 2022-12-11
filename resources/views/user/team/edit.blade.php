@@ -15,7 +15,7 @@
         <div class="card-inner card-inner-lg">
             <div class="nk-block">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Balance: 0.00</h3>
+                    <h3 class="nk-block-title page-title">Balance: {{ number_format(balance(auth()->user()->id),2) }}</h3>
                 </div>
                 <div class="nk-data data-list data-list-s2">
                     <form action="{{ route('user.team.store') }}" method="POST">

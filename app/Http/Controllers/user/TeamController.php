@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Events\CommissionToRefersEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Bet;
 use App\Models\Group;
@@ -71,6 +72,9 @@ class TeamController extends Controller
 
         auth()->user()->status = 'active';
         auth()->user()->save();
+
+        CommissionToRefersEvent::dispatch($bet);
+
 
 
         return redirect()->route('user.dashboard.index')->with('success', 'Submitted Successfully.');

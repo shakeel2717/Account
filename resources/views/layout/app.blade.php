@@ -11,6 +11,8 @@
     <title>{{ env('APP_NAME') }} | {{ env('APP_DESC') }}</title>
     <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=3.1.0') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=3.1.0') }}">
+    @livewireStyles
+    @powerGridStyles
 </head>
 
 <body class="nk-body bg-white npc-default has-aside ">
@@ -29,7 +31,7 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown notification-dropdown">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                        <a href="#" class="nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
@@ -142,6 +144,8 @@
     <script src="{{ asset('assets/js/bundle.js?ver=3.1.0') }}"></script>
     <script src="{{ asset('assets/js/scripts.js?ver=3.1.0') }}"></script>
     <script src="{{ asset('assets/js/charts/gd-default.js?ver=3.1.0') }}"></script>
+    @livewireScripts
+    @powerGridScripts
     @yield("footer")
 </body>
 

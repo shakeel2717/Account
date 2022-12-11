@@ -9,6 +9,15 @@
         </a>
     </li>
     <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Transaction ID</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('admin.tids.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All TID</span>
+        </a>
+    </li>
+    <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Exit</h6>
     </li>
     <li class="nk-menu-item">

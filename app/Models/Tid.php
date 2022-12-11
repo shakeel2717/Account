@@ -9,6 +9,14 @@ class Tid extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'gateway_id',
+        'amount',
+        'tid',
+        'status',
+    ];
+
 
 
     public function user()
