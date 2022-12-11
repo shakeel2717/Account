@@ -23,5 +23,6 @@
 @endsection
 
 @section('content')
+@include('inc.tids')
 @include('inc.fund')
 @endsection
