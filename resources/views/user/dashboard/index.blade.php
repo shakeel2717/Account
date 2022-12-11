@@ -95,7 +95,9 @@
         </div>
     </div>
 </div>
+@foreach ($groups as $group)
 @include('inc.teams')
+@endforeach
 @include('inc.tids')
 @include('inc.fund')
 @endsection

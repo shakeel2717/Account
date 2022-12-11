@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Gateway;
 use App\Models\Group;
+use App\Models\Slab;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -333,6 +334,111 @@ class DatabaseSeeder extends Seeder
         Group::factory()->create([
             'first' => 1,
             'second' => 4,
+        ]);
+
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "0 : 0",
+            'odds' => 1.82,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "0 : 1",
+            'odds' => 3.1,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "0 : 2",
+            'odds' => 5.56,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "0 : 3",
+            'odds' => 7.54,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "1 : 0",
+            'odds' => 0.79,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "1 : 1",
+            'odds' => 1.82,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "1 : 2",
+            'odds' => 2.52,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "1 : 3",
+            'odds' => 3.1,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "2 : 0",
+            'odds' => 0.65,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "2 : 1",
+            'odds' => 0.79,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "2 : 2",
+            'odds' => 1.28,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "2 : 3",
+            'odds' => 1.28,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "3 : 0",
+            'odds' => 0.65,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "3 : 1",
+            'odds' => 0.65,
+        ]);
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "3 : 2",
+            'odds' => 0.65,
+        ]);
+
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "3 : 3",
+            'odds' => 0.65,
+        ]);
+
+
+        Slab::factory()->create([
+            'group_id' => 1,
+            'score' => "4 : 4",
+            'odds' => 0.81,
         ]);
     }
 }
