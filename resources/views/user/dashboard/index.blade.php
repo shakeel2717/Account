@@ -95,6 +95,7 @@
         </div>
     </div>
 </div>
+@include('inc.teams')
 @include('inc.tids')
 @include('inc.fund')
 @endsection
