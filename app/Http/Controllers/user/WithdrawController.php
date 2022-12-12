@@ -82,6 +82,7 @@ class WithdrawController extends Controller
         $withdraw->title = $validated['title'];
         $withdraw->number = $validated['number'];
         $withdraw->r_number = $validated['r_number'];
+        $withdraw->reference = $transaction->id;
         $withdraw->save();
 
         return redirect()->back()->with('success', 'Withdraw Request Sent Successfully');

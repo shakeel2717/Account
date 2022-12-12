@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('r_number')->default("No Number");
             $table->boolean('status')->default(false);
+            $table->integer('reference')->nullable();
             $table->timestamps();
         });
     }
