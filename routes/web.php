@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CoinPaymentController;
+use App\Http\Controllers\user\AllDepositController;
 use App\Http\Controllers\user\BetTransactionController;
 use App\Http\Controllers\user\CommissionController;
 use App\Http\Controllers\user\DashboardController;
@@ -15,8 +16,10 @@ Route::redirect('/', '/login');
 
 Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->group(function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::get('withdraw/all', [WithdrawController::class, 'all'])->name('withdraw.all');
     Route::resource('withdraw', WithdrawController::class);
     Route::post('deposit/tid', [DepositController::class, 'tid'])->name('deposit.tid');
+    Route::get('deposit/all', [DepositController::class, 'all'])->name('deposit.all');
     Route::resource('deposit', DepositController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('security', SecurityController::class);

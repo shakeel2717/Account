@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class DepositController extends Controller
 {
+
+    public function all()
+    {
+        return view('user.deposit.all');
+    }
+    
     /**
      * Display a listing of the resource.
      *

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
 {
+
+    public function all()
+    {
+        return view('user.withdraw.all');
+    }
     /**
      * Display a listing of the resource.
      *

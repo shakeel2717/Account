@@ -35,6 +35,18 @@
             <span class="nk-menu-text">All Betting</span>
         </a>
     </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.deposit.all') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Deposit</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.withdraw.all') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Withdraw</span>
+        </a>
+    </li>
 
     <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Commission</h6>
