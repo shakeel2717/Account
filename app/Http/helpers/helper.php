@@ -61,3 +61,10 @@ function setting($key)
     $setting = Setting::where('key', $key)->first();
     return $setting->value;
 }
+
+
+function edie($string)
+{
+    info("Website Error:" . $string);
+    die();
+}

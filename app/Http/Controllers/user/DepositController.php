@@ -104,9 +104,10 @@ class DepositController extends Controller
         // checking if this method is online
         if ($gateway->offline != true) {
             // getting live rate
-            $url = "https://v6.exchangerate-api.com/v6/106d34bcdb628f9cbe2ca3dd/pair/USD/PKR/";
-            $data = json_decode(file_get_contents($url));
-            $amount = $validated['amount'] / $data->conversion_rate;
+            // $url = "https://v6.exchangerate-api.com/v6/106d34bcdb628f9cbe2ca3dd/pair/USD/PKR/";
+            // $data = json_decode(file_get_contents($url));
+            // $amount = $validated['amount'] / $data->conversion_rate;
+            $amount = $validated['amount'];
             $private_key = env('PRIKEY');
             $public_key = env('PUBKEY');
             try {

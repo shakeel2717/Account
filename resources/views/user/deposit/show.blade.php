@@ -24,8 +24,9 @@
                         @method("PUT")
                         @csrf
                         <div class="form-group">
-                            <label for="amount">Amount in PKR</label>
-                            <input type="text" name="amount" id="amount" placeholder="Amount in PKR" class="form-control">
+                            <label for="amount">Amount in {{ ($gateway->offline) ? "PKR" : "USD"  }} </label>
+                            <input type="text" name="amount" id="amount" placeholder="Amount" class="form-control">
+                            <small class="text-danger">Note: Please Enter Amount only in {{ ($gateway->offline) ? "PKR" : "USD"  }} </small>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-lg btn-primary" value="Deposit Fund">

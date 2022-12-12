@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoinPaymentController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\DepositController;
 use App\Http\Controllers\user\ProfileController;
@@ -11,7 +12,7 @@ Route::redirect('/', '/login');
 
 Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->group(function () {
     Route::resource('dashboard', DashboardController::class);
-    Route::post('deposit/tid', [DepositController::class,'tid'])->name('deposit.tid');
+    Route::post('deposit/tid', [DepositController::class, 'tid'])->name('deposit.tid');
     Route::resource('deposit', DepositController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('security', SecurityController::class);
@@ -20,3 +21,8 @@ Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->g
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+
+
+Route::prefix('payment')->group(function () {
+    Route::post('/webhook', [CoinPaymentController::class, 'webhook'])->name('webhook');
+});
