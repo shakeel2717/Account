@@ -28,7 +28,7 @@ class AddCommissionToRefersListeners
      */
     public function handle(CommissionToRefersEvent $event)
     {
-        info('Checking if user have Valid Upliners');
+        info('Checking if user have Valid Upliners of' . auth()->user()->username);
 
         if (auth()->user()->refer != "default") {
             $upliner1 = User::where('username', auth()->user()->refer)->first();
@@ -44,7 +44,7 @@ class AddCommissionToRefersListeners
             $transaction->save();
 
             if ($upliner1->refer != "default") {
-                $upliner2 = User::where('username', auth()->user()->refer)->first();
+                $upliner2 = User::where('username', $upliner1->refer)->first();
                 $second_level = setting('second_level');
 
                 $transaction = new Transaction();
@@ -57,7 +57,7 @@ class AddCommissionToRefersListeners
                 $transaction->save();
 
                 if ($upliner2->refer != "default") {
-                    $upliner3 = User::where('username', auth()->user()->refer)->first();
+                    $upliner3 = User::where('username', $upliner2->refer)->first();
                     $third_level = setting('third_level');
 
                     $transaction = new Transaction();

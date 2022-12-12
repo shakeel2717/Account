@@ -11,6 +11,26 @@ function balance($user_id)
 }
 
 
+function profit($user_id)
+{
+    $in = Transaction::where('user_id', $user_id)->where('type', 'Profit')->where('sum', true)->sum('amount');
+    return $in;
+}
+
+function withdraw($user_id)
+{
+    $in = Transaction::where('user_id', $user_id)->where('type', 'Withdraw')->where('sum', false)->sum('amount');
+    return $in;
+}
+
+
+function bonus($user_id)
+{
+    $in = Transaction::where('user_id', $user_id)->where('type', 'Profit')->where('sum', true)->sum('amount');
+    return $in;
+}
+
+
 function setting($key)
 {
     $setting = Setting::where('key', $key)->first();
