@@ -500,5 +500,10 @@ class DatabaseSeeder extends Seeder
             'key' => 'third_level',
             'value' => 2,
         ]);
+
+        Setting::factory()->create([
+            'key' => 'withdraw_fees',
+            'value' => 2,
+        ]);
     }
 }

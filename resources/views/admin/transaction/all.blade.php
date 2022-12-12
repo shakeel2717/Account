@@ -11,6 +11,6 @@
 
 @section('content')
 <div class="nk-block">
-    <livewire:admin.all-transaction :type="array('Reverse Principle','Deposit','Bet','Level 1 Commission','Level 2 Commission','Level 3 Commission')" />
+    <livewire:admin.all-transaction :type="array('Reverse Principle','Deposit','Bet','Level 1 Commission','Level 2 Commission','Level 3 Commission','Withdraw Fees','Withdraw')" />
 </div>
 @endsection
