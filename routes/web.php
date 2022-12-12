@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CoinPaymentController;
+use App\Http\Controllers\user\BetTransactionController;
+use App\Http\Controllers\user\CommissionController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\DepositController;
 use App\Http\Controllers\user\ProfileController;
@@ -19,6 +21,10 @@ Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->g
     Route::resource('profile', ProfileController::class);
     Route::resource('security', SecurityController::class);
     Route::resource('team', TeamController::class);
+    Route::get('bet/all', [BetTransactionController::class, 'all'])->name('bet.all');
+    Route::get('commission/first', [CommissionController::class, 'first'])->name('commission.first');
+    Route::get('commission/second', [CommissionController::class, 'second'])->name('commission.second');
+    Route::get('commission/third', [CommissionController::class, 'third'])->name('commission.third');
 });
 
 require __DIR__ . '/auth.php';

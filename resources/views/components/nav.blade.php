@@ -27,6 +27,37 @@
         </a>
     </li>
     <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Statement</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.bet.all') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Betting</span>
+        </a>
+    </li>
+
+    <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Commission</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.commission.first') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">First Level</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.commission.second') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">Second Level</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.commission.third') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">Third Level</span>
+        </a>
+    </li>
+    <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Account</h6>
     </li>
     <li class="nk-menu-item">
