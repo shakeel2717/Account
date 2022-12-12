@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\admin;
 
-use App\Models\Tid;
 use App\Models\Transaction;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,11 +9,11 @@ use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class AllTids extends PowerGridComponent
+final class AllTransaction extends PowerGridComponent
 {
     use ActionButton;
 
-    public string $status;
+    public array $type;
 
     /*
     |--------------------------------------------------------------------------
@@ -49,11 +48,11 @@ final class AllTids extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Tid>
+     * @return Builder<\App\Models\Transaction>
      */
     public function datasource(): Builder
     {
-        return Tid::query()->where('status', $this->status);
+        return Transaction::query()->whereIn('type', $this->type);
     }
 
     /*
@@ -89,26 +88,25 @@ final class AllTids extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('username', function (Tid $model) {
+            ->addColumn('user', function (Transaction $model) {
                 return $model->user->username;
             })
-            ->addColumn('gateway', function (Tid $model) {
-                return $model->gateway->name;
-            })
-            ->addColumn('gateway_id')
-            ->addColumn('amount', function (Tid $model) {
-                return number_format($model->amount, 2);
-            })
-            ->addColumn('tid')
+            ->addColumn('type')
 
             /** Example of custom column using a closure **/
-            ->addColumn('tid_lower', function (Tid $model) {
-                return strtolower(e($model->tid));
+            ->addColumn('type_lower', function (Transaction $model) {
+                return strtolower(e($model->type));
             })
 
+            ->addColumn('amount', function (Transaction $model) {
+                return number_format($model->amount, 2);
+            })
+            ->addColumn('reference')
+            ->addColumn('note')
+            ->addColumn('sum')
+            ->addColumn('from')
             ->addColumn('status')
-            ->addColumn('created_at_formatted', fn (Tid $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (Tid $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -128,21 +126,30 @@ final class AllTids extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('USER', 'username'),
+            Column::make('USER ID', 'user'),
 
-            Column::make('GATEWAY', 'gateway'),
-
-            Column::make('AMOUNT', 'amount')
-                ->sortable()
+            Column::make('TYPE', 'type')
                 ->searchable(),
 
-            Column::make('TID', 'tid')
+            Column::make('AMOUNT', 'amount')
+                ->searchable(),
+
+            Column::make('REFERENCE', 'reference')
+                ->searchable(),
+
+            Column::make('NOTE', 'note')
+                ->searchable(),
+
+            Column::make('SUM', 'sum'),
+
+            Column::make('FROM', 'from')
                 ->searchable(),
 
             Column::make('STATUS', 'status')
-                ->toggleable(),
+                ->searchable(),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at'),
+            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+                ->searchable(),
 
         ];
     }
@@ -156,53 +163,26 @@ final class AllTids extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Tid Action Buttons.
+     * PowerGrid Transaction Action Buttons.
      *
      * @return array<int, Button>
      */
 
-
+    /*
     public function actions(): array
     {
-        return [
-            Button::make('approve', 'Approve')
-                ->class('btn btn-primary')
-                ->emit('approve', ['id' => 'id']),
+       return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('transaction.edit', ['transaction' => 'id']),
 
-            //    Button::make('destroy', 'Delete')
-            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //        ->route('tid.destroy', ['tid' => 'id'])
-            //        ->method('delete')
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('transaction.destroy', ['transaction' => 'id'])
+               ->method('delete')
         ];
     }
-
-
-    protected function getListeners()
-    {
-        return array_merge(
-            parent::getListeners(),
-            [
-                'approve',
-            ]
-        );
-    }
-
-
-    public function approve($id)
-    {
-        $tid = Tid::find($id['id']);
-        $tid->status = true;
-        $tid->save();
-
-        $transaction = new Transaction();
-        $transaction->user_id = $tid->user_id;
-        $transaction->type = "Deposit";
-        $transaction->amount = $tid->amount;
-        $transaction->status = 'approved';
-        $transaction->sum = true;
-        $transaction->save();
-    }
-
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -213,20 +193,21 @@ final class AllTids extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Tid Action Rules.
+     * PowerGrid Transaction Action Rules.
      *
      * @return array<int, RuleActions>
      */
 
-
+    /*
     public function actionRules(): array
     {
-        return [
+       return [
 
-            //Hide button edit for ID 1
-            Rule::button('approve')
-                ->when(fn ($tid) => $tid->status == 1)
+           //Hide button edit for ID 1
+            Rule::button('edit')
+                ->when(fn($transaction) => $transaction->id === 1)
                 ->hide(),
         ];
     }
+    */
 }

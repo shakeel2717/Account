@@ -2,15 +2,14 @@
 
 namespace App\Http\Livewire\admin;
 
-use App\Models\Tid;
-use App\Models\Transaction;
+use App\Models\Bet;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class AllTids extends PowerGridComponent
+final class AllBet extends PowerGridComponent
 {
     use ActionButton;
 
@@ -49,11 +48,11 @@ final class AllTids extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Tid>
+     * @return Builder<\App\Models\Bet>
      */
     public function datasource(): Builder
     {
-        return Tid::query()->where('status', $this->status);
+        return Bet::query()->where('status', $this->status);
     }
 
     /*
@@ -89,26 +88,25 @@ final class AllTids extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('username', function (Tid $model) {
-                return $model->user->username;
+            ->addColumn('user', function (Bet $model) {
+                return $model->user->name;
             })
-            ->addColumn('gateway', function (Tid $model) {
-                return $model->gateway->name;
+            ->addColumn('group_id')
+            ->addColumn('slab', function (Bet $model) {
+                return $model->slab->odds;
             })
-            ->addColumn('gateway_id')
-            ->addColumn('amount', function (Tid $model) {
+            ->addColumn('amount', function (Bet $model) {
                 return number_format($model->amount, 2);
             })
-            ->addColumn('tid')
+            ->addColumn('status')
 
             /** Example of custom column using a closure **/
-            ->addColumn('tid_lower', function (Tid $model) {
-                return strtolower(e($model->tid));
+            ->addColumn('status_lower', function (Bet $model) {
+                return strtolower(e($model->status));
             })
 
-            ->addColumn('status')
-            ->addColumn('created_at_formatted', fn (Tid $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (Tid $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Bet $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Bet $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -128,21 +126,23 @@ final class AllTids extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('USER', 'username'),
+            Column::make('USER ID', 'user'),
 
-            Column::make('GATEWAY', 'gateway'),
+            Column::make('GROUP ID', 'group_id'),
+
+            Column::make('SLAB %', 'slab'),
 
             Column::make('AMOUNT', 'amount')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('TID', 'tid')
                 ->searchable(),
 
             Column::make('STATUS', 'status')
-                ->toggleable(),
+                ->searchable(),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at'),
+            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+                ->searchable(),
+
+            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
+                ->searchable(),
 
         ];
     }
@@ -156,53 +156,26 @@ final class AllTids extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Tid Action Buttons.
+     * PowerGrid Bet Action Buttons.
      *
      * @return array<int, Button>
      */
 
-
+    /*
     public function actions(): array
     {
-        return [
-            Button::make('approve', 'Approve')
-                ->class('btn btn-primary')
-                ->emit('approve', ['id' => 'id']),
+       return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('bet.edit', ['bet' => 'id']),
 
-            //    Button::make('destroy', 'Delete')
-            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //        ->route('tid.destroy', ['tid' => 'id'])
-            //        ->method('delete')
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('bet.destroy', ['bet' => 'id'])
+               ->method('delete')
         ];
     }
-
-
-    protected function getListeners()
-    {
-        return array_merge(
-            parent::getListeners(),
-            [
-                'approve',
-            ]
-        );
-    }
-
-
-    public function approve($id)
-    {
-        $tid = Tid::find($id['id']);
-        $tid->status = true;
-        $tid->save();
-
-        $transaction = new Transaction();
-        $transaction->user_id = $tid->user_id;
-        $transaction->type = "Deposit";
-        $transaction->amount = $tid->amount;
-        $transaction->status = 'approved';
-        $transaction->sum = true;
-        $transaction->save();
-    }
-
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -213,20 +186,21 @@ final class AllTids extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Tid Action Rules.
+     * PowerGrid Bet Action Rules.
      *
      * @return array<int, RuleActions>
      */
 
-
+    /*
     public function actionRules(): array
     {
-        return [
+       return [
 
-            //Hide button edit for ID 1
-            Rule::button('approve')
-                ->when(fn ($tid) => $tid->status == 1)
+           //Hide button edit for ID 1
+            Rule::button('edit')
+                ->when(fn($bet) => $bet->id === 1)
                 ->hide(),
         ];
     }
+    */
 }

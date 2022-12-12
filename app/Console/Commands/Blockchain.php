@@ -46,7 +46,7 @@ class Blockchain extends Command
             $transaction->amount = $profit;
             $transaction->status = 'approved';
             $transaction->sum = true;
-            $transaction->reference = number_format($profitRatio, 2) . "% Profit " . number_format($bet->amount, 2) . ": Total Amount";
+            $transaction->reference = number_format($profitRatio, 2) . "% Profit & Total Amount: " . number_format($bet->amount, 2);
             $transaction->note = "Blockchain";
             $transaction->save();
 

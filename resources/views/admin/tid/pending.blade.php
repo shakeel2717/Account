@@ -11,6 +11,6 @@
 
 @section('content')
 <div class="nk-block">
-    <livewire:admin.all-tids status="1" />
+    <livewire:admin.all-tids status="0" />
 </div>
 @endsection

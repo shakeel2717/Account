@@ -5,22 +5,28 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TidController extends Controller
+class BetController extends Controller
 {
+
+    public function active()
+    {
+        return view('admin.bet.active');
+    }
+
+
+    public function close()
+    {
+        return view('admin.bet.close');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function approved()
+    public function index()
     {
-        return view('admin.tid.index');
-    }
-
-
-    public function pending()
-    {
-        return view('admin.tid.pending');
+        //
     }
 
     /**
