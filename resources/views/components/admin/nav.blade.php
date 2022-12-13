@@ -9,6 +9,36 @@
         </a>
     </li>
     <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Customer</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('admin.customer.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Customer</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('admin.customer.create') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">Add Customer</span>
+        </a>
+    </li>
+    <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Vendors</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('admin.vendor.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Vendors</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('admin.vendor.create') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">Add Vendor</span>
+        </a>
+    </li>
+    <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Exit</h6>
     </li>
     <li class="nk-menu-item">
@@ -17,4 +47,6 @@
             <span class="nk-menu-text">Logout</span>
         </a>
     </li>
+
+
 </ul>
