@@ -25,6 +25,7 @@ Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->g
     Route::resource('security', SecurityController::class);
     Route::resource('team', TeamController::class);
     Route::get('bet/all', [BetTransactionController::class, 'all'])->name('bet.all');
+    Route::get('bet/profit', [BetTransactionController::class, 'profit'])->name('bet.profit');
     Route::get('commission/first', [CommissionController::class, 'first'])->name('commission.first');
     Route::get('commission/second', [CommissionController::class, 'second'])->name('commission.second');
     Route::get('commission/third', [CommissionController::class, 'third'])->name('commission.third');

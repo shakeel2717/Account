@@ -36,6 +36,12 @@
         </a>
     </li>
     <li class="nk-menu-item">
+        <a href="{{ route('user.bet.profit') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Profit</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
         <a href="{{ route('user.deposit.all') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
             <span class="nk-menu-text">All Deposit</span>

@@ -11,4 +11,10 @@ class BetTransactionController extends Controller
     {
         return view('user.bet.all');
     }
+
+
+    public function profit()
+    {
+        return view('user.bet.profit');
+    }
 }
