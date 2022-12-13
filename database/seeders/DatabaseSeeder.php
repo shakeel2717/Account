@@ -68,6 +68,15 @@ class DatabaseSeeder extends Seeder
 
 
         User::factory()->create([
+            'name' => 'Test 13',
+            'username' => 'test13',
+            'email' => 'test13@gmail.com',
+            'refer' => 'test2',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+
+        User::factory()->create([
             'name' => 'Test 4',
             'username' => 'test4',
             'email' => 'test4@gmail.com',

@@ -44,8 +44,11 @@ function levelThird($user_id)
         $referId[] = $referid->id;
     }
     $thirdRefers = User::whereIn('id', $referId)->get();
-    foreach ($thirdRefers as $refers) {
-        $referCount[] = $refers->id;
+    foreach ($thirdRefers as $refer) {
+        $refersIndirect = User::where('refer', $refer->username)->get();
+        foreach ($refersIndirect as $downlineRefer) {
+            $referCount[] = $downlineRefer->id;
+        }
     }
     $totalRefers = User::whereIn('id', $referCount)->get();
     return $totalRefers;
