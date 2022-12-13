@@ -124,31 +124,22 @@ final class AllCommission extends PowerGridComponent
     {
         return [
             Column::make('TYPE', 'type')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
 
             Column::make('AMOUNT', 'amount')
-                ->sortable()
                 ->searchable(),
 
             Column::make('REFERENCE', 'reference')
-                ->sortable()
                 ->searchable(),
 
             Column::make('NOTE', 'note')
-                ->sortable()
                 ->searchable(),
 
             Column::make('FROM', 'from')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
+                ->searchable(),
 
         ];
     }
