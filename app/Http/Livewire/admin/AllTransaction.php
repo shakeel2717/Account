@@ -13,8 +13,6 @@ final class AllTransaction extends PowerGridComponent
 {
     use ActionButton;
 
-    public array $type;
-
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -52,7 +50,7 @@ final class AllTransaction extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Transaction::query()->whereIn('type', $this->type);
+        return Transaction::query();
     }
 
     /*
@@ -89,24 +87,12 @@ final class AllTransaction extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('user', function (Transaction $model) {
-                return $model->user->username;
+                return $model->user->name;
             })
-            ->addColumn('type')
-
-            /** Example of custom column using a closure **/
-            ->addColumn('type_lower', function (Transaction $model) {
-                return strtolower(e($model->type));
-            })
-
-            ->addColumn('amount', function (Transaction $model) {
-                return number_format($model->amount, 2);
-            })
+            ->addColumn('amount')
             ->addColumn('reference')
-            ->addColumn('note')
-            ->addColumn('sum')
-            ->addColumn('from')
-            ->addColumn('status')
-            ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Transaction $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -126,30 +112,19 @@ final class AllTransaction extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('USER ID', 'user'),
-
-            Column::make('TYPE', 'type')
-                ->searchable(),
+            Column::make('Added By', 'user'),
 
             Column::make('AMOUNT', 'amount')
+                ->sortable()
                 ->searchable(),
 
             Column::make('REFERENCE', 'reference')
-                ->searchable(),
-
-            Column::make('NOTE', 'note')
-                ->searchable(),
-
-            Column::make('SUM', 'sum'),
-
-            Column::make('FROM', 'from')
-                ->searchable(),
-
-            Column::make('STATUS', 'status')
+                ->sortable()
                 ->searchable(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
 
         ];
     }

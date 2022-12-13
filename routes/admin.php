@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\TidController;
 use App\Http\Controllers\admin\TransactionsController;
 use App\Http\Controllers\admin\WithdrawController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,5 @@ Route::prefix('admin/')->middleware('auth', 'admin', 'verified')->name('admin.')
     Route::resource('dashboard', DashboardController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('vendor', VendorController::class);
+    Route::resource('transaction', TransactionController::class);
 });

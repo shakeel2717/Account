@@ -16,13 +16,8 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('type');
-            $table->double('amount');
             $table->text('reference')->nullable();
-            $table->text('note')->nullable();
-            $table->boolean('sum');
-            $table->string('from')->nullable();
-            $table->string('status')->default('pending');
+            $table->double('amount');
             $table->timestamps();
         });
     }
