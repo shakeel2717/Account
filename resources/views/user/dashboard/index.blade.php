@@ -20,7 +20,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="m-2 p-3">
                         <em class="icon h4 ni ni-cc-alt-fill text-primary"></em>
-                        <h2 class="amount mt-2">{{ number_format(balance(auth()->user()->id),2) }}</h2>
+                        <h2 class="amount mt-2">0.00</h2>
                         <p class="title" style="font-size:20px;">My Investment</p>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="m-2 p-3">
                         <em class="icon h4 ni ni-cc-alt-fill text-primary"></em>
-                        <h2 class="amount mt-2">{{ number_format(balance(auth()->user()->id),2) }}</h2>
+                        <h2 class="amount mt-2">0.00</h2>
                         <p class="title" style="font-size:20px;">My Expense</p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="m-2 p-3">
                         <em class="icon h4 ni ni-cc-alt-fill text-primary"></em>
-                        <h2 class="amount mt-2">{{ number_format(balance(auth()->user()->id),2) }}</h2>
+                        <h2 class="amount mt-2">0.00</h2>
                         <p class="title" style="font-size:20px;">Company Expense</p>
                     </div>
                 </div>

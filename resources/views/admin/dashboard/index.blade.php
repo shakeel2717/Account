@@ -18,7 +18,7 @@
         <div class="col-md-4">
             <div class="card card-bordered mb-2">
                 <div class="card-body">
-                    <h4 class="title">All Users</h4>
+                    <h4 class="title">All Partners</h4>
                     <br>
                     <h2>{{ $users->count() }}</h2>
                 </div>
@@ -27,27 +27,9 @@
         <div class="col-md-4">
             <div class="card card-bordered mb-2">
                 <div class="card-body">
-                    <h4 class="title">Active Users</h4>
-                    <br>
-                    <h2>{{ $users->where('status','active')->count() }}</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-bordered mb-2">
-                <div class="card-body">
-                    <h4 class="title">Suspended Users</h4>
-                    <br>
-                    <h2>{{ $users->where('status','suspend')->count() }}</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-bordered mb-2">
-                <div class="card-body">
                     <h4 class="title">Total Customers</h4>
                     <br>
-                    <h2>0</h2>
+                    <h2>{{ totalCustomers()->count() }}</h2>
                 </div>
             </div>
         </div>
@@ -56,7 +38,16 @@
                 <div class="card-body">
                     <h4 class="title">Total Vendors</h4>
                     <br>
-                    <h2>0</h2>
+                    <h2>{{ totalVendors()->count() }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Total Expense</h4>
+                    <br>
+                    <h2>{{ number_format(totalExpense(),2) }}</h2>
                 </div>
             </div>
         </div>
