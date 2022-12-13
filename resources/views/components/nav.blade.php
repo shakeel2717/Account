@@ -76,6 +76,15 @@
         </a>
     </li>
     <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Refer System</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.refer.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">Affiliate</span>
+        </a>
+    </li>
+    <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Account</h6>
     </li>
     <li class="nk-menu-item">

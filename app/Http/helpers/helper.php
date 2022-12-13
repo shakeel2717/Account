@@ -2,12 +2,53 @@
 
 use App\Models\Setting;
 use App\Models\Transaction;
+use App\Models\User;
 
 function balance($user_id)
 {
     $in = Transaction::where('user_id', $user_id)->where('sum', true)->sum('amount');
     $out = Transaction::where('user_id', $user_id)->where('sum', false)->sum('amount');
     return $in - $out;
+}
+
+
+function levelFirst($user_id)
+{
+    $user =  User::find($user_id);
+    $direct = User::where('refer', $user->username)->get();
+    return $direct;
+}
+
+
+function levelSecond($user_id)
+{
+    $user =  User::find($user_id);
+    $referCount = [];
+    $refers = User::where('refer', $user->username)->get();
+    foreach ($refers as $refer) {
+        $refersIndirect = User::where('refer', $refer->username)->get();
+        foreach ($refersIndirect as $downlineRefer) {
+            $referCount[] = $downlineRefer->id;
+        }
+    }
+    $totalRefers = User::whereIn('id', $referCount)->get();
+    return $totalRefers;
+}
+
+
+function levelThird($user_id)
+{
+    $referCount = [];
+    $referId = [];
+    foreach (levelSecond($user_id) as $referid) {
+        $referId[] = $referid->id;
+    }
+    $thirdRefers = User::whereIn('id', $referId)->get();
+    foreach ($thirdRefers as $refers) {
+        $referCount[] = $refers->id;
+    }
+    $totalRefers = User::whereIn('id', $referCount)->get();
+    return $totalRefers;
 }
 
 
