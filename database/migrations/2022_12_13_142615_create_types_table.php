@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
-            $table->text('reference')->nullable();
-            $table->double('amount');
-            $table->string('type');
-            $table->enum('sum', ['in', 'out']);
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('types');
     }
 };

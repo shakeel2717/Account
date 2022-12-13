@@ -23,6 +23,31 @@
                             <input type="text" name="amount" id="amount" placeholder="Transaction Amount" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label for="type_id">Transaction Type</label>
+                            <select name="type_id" id="type_id" class="form-control">
+                                <option value="">Select Transaction Type</option>
+                                @foreach ($types as $type)
+                                <option value="{{ $type->id }}">{{ $type->value }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer_id">Select Customer</label>
+                            <select name="customer_id" id="customer_id" class="form-control">
+                                <option value="">Select Customer</option>
+                                @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sum">SUM</label>
+                            <select name="sum" id="sum" class="form-control">
+                                <option value="in">In</option>
+                                <option value="out">Out</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <input type="submit" class="btn btn-lg btn-primary" value="Add Transaction">
                         </div>
                     </form>

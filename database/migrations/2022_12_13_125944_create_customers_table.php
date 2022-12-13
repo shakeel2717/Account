@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['customer', 'vendor']);
+            $table->enum('type', ['customer', 'vendor', 'employee']);
             $table->string('name');
             $table->string('phone')->nullable();
             $table->text('address')->nullable();

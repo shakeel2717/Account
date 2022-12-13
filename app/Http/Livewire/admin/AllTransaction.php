@@ -118,6 +118,11 @@ final class AllTransaction extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+
+            Column::make('SUM', 'sum')
+                ->sortable()
+                ->searchable(),
+
             Column::make('REFERENCE', 'reference')
                 ->sortable()
                 ->searchable(),

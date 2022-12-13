@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Transaction;
-use App\Models\Type;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class SalaryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.salary.index');
     }
 
     /**
@@ -27,9 +26,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $customers = Customer::get();
-        $types = Type::get();
-        return view('user.transaction.create', compact('customers', 'types'));
+        $employees = Customer::where('type', 'employee')->get();
+        return view('admin.salary.create', compact('employees'));
     }
 
     /**
@@ -41,26 +39,19 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'customer_id' => 'nullable|integer',
-            'type_id' => 'required|integer',
-            'reference' => 'required|string',
-            'amount' => 'required|numeric|',
-            'sum' => 'required|string',
+            'amount' => 'required|numeric',
+            'employee_id' => 'required|integer',
         ]);
 
-        $type = Type::find($validated['type_id']);
+        $salary = new Transaction();
+        $salary->user_id = auth()->user()->id;
+        $salary->customer_id = $validated['employee_id'];
+        $salary->type = "salary";
+        $salary->amount = $validated['amount'];
+        $salary->sum = "out";
+        $salary->save();
 
-        // adding transaction
-        $transaction = new Transaction();
-        $transaction->user_id = auth()->user()->id;
-        $transaction->customer_id = $validated['customer_id'];
-        $transaction->type = $type->value;
-        $transaction->reference = $validated['reference'];
-        $transaction->amount = $validated['amount'];
-        $transaction->sum = $validated['sum'];
-        $transaction->save();
-
-        return redirect()->back()->with('success', 'Transaction Added Successfully');
+        return redirect()->back()->with('success', 'Salary Paid Successfully');
     }
 
     /**
