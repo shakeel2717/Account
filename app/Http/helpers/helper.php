@@ -30,3 +30,12 @@ function totalOfficeExpense()
     $out = Transaction::where('sum', 'out')->where('type', 'Office Expense')->sum('amount');
     return $out;
 }
+
+
+
+function balance($partner_id)
+{
+    $in = Transaction::where('sum', 'in')->where('customer_id', $partner_id)->sum('amount');
+    $out = Transaction::where('sum', 'out')->where('customer_id', $partner_id)->sum('amount');
+    return $in - $out;
+}

@@ -42,6 +42,34 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Abid Balance</h4>
+                    <br>
+                    <h2>{{ number_format(balance(1),2) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Shakeel Balance</h4>
+                    <br>
+                    <h2>{{ number_format(balance(2),2) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Atif Balance</h4>
+                    <br>
+                    <h2>{{ number_format(balance(3),2) }}</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
