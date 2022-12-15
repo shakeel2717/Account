@@ -2,7 +2,7 @@
 @section('head')
 <div class="nk-block-head">
     <div class="nk-block-head-content">
-        <h3 class="nk-block-title page-title">Add Visa Job</h3>
+        <h3 class="nk-block-title page-title">Add Service Job</h3>
     </div>
 </div>
 @endsection
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-lg btn-primary" value="Add Visa Job">
+                            <input type="submit" class="btn btn-lg btn-primary" value="Add Service Job">
                         </div>
                     </form>
                 </div>

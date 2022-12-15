@@ -44,7 +44,7 @@
     <li class="nk-menu-item">
         <a href="{{ route('admin.visa.create') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-            <span class="nk-menu-text">Add Visa Job</span>
+            <span class="nk-menu-text">Add Service Job</span>
         </a>
     </li>
     <li class="nk-menu-heading">
