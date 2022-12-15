@@ -40,11 +40,51 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Type::factory()->create([
-            'value' => 'Office Expense',
+            'value' => 'Company Expense',
         ]);
 
         Type::factory()->create([
-            'value' => 'Business Expense',
+            'value' => 'Company Start Investment',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Daily Office Expense',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Vehicle Expense',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Fuel Expense ',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Office Cleaner',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Office Internet',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Transport',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Donation',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Restaurant Expense',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Office Lunch',
+        ]);
+
+        Type::factory()->create([
+            'value' => 'Office Rental 3M',
         ]);
     }
 }
