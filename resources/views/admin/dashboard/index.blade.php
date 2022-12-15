@@ -27,9 +27,9 @@
         <div class="col-md-4">
             <div class="card card-bordered mb-2">
                 <div class="card-body">
-                    <h4 class="title">Office Expense</h4>
+                    <h4 class="title">Total In</h4>
                     <br>
-                    <h2>{{ totalExpense() }}</h2>
+                    <h2>{{ totalIn() }}</h2>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <div class="card-body">
                     <h4 class="title">Abid Balance</h4>
                     <br>
-                    <h2>{{ number_format(balance(1),2) }}</h2>
+                    <h4>{{ number_format(balance(1),2) }} | {{ number_format(totalPaid(1),2) }}</h4>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                 <div class="card-body">
                     <h4 class="title">Shakeel Balance</h4>
                     <br>
-                    <h2>{{ number_format(balance(2),2) }}</h2>
+                    <h4>{{ number_format(balance(2),2) }} | {{ number_format(totalPaid(2),2) }}</h4>
                 </div>
             </div>
         </div>
@@ -66,10 +66,22 @@
                 <div class="card-body">
                     <h4 class="title">Atif Balance</h4>
                     <br>
-                    <h2>{{ number_format(balance(3),2) }}</h2>
+                    <h4>{{ number_format(balance(3),2) }} | {{ number_format(totalPaid(3),2) }}</h4>
                 </div>
             </div>
         </div>
+        <hr>
+        @foreach ($types as $type)
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">{{$type->value}}</h4>
+                    <br>
+                    <h4>{{ number_format(typeBalance($type->value),2) }}</h4>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
 </div>
 @endsection

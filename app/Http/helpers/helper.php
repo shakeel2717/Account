@@ -18,6 +18,12 @@ function totalExpense()
     return $out;
 }
 
+function totalIn()
+{
+    $in = Transaction::where('sum', 'in')->sum('amount');
+    return $in;
+}
+
 
 function totalSalary()
 {
@@ -25,17 +31,23 @@ function totalSalary()
     return $out;
 }
 
-function totalOfficeExpense()
-{
-    $out = Transaction::where('sum', 'out')->where('type', 'Office Expense')->sum('amount');
-    return $out;
-}
-
-
-
 function balance($partner_id)
 {
     $in = Transaction::where('sum', 'in')->where('customer_id', $partner_id)->sum('amount');
     $out = Transaction::where('sum', 'out')->where('customer_id', $partner_id)->sum('amount');
     return $in - $out;
+}
+
+
+function totalPaid($partner_id)
+{
+    $out = Transaction::where('sum', 'out')->where('type', 'Partners Share')->where('customer_id', $partner_id)->sum('amount');
+    return $out;
+}
+
+
+function typeBalance($type)
+{
+    $out = Transaction::where('sum', 'out')->where('type', $type)->sum('amount');
+    return $out;
 }

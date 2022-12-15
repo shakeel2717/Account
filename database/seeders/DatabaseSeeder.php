@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Type::factory()->create([
-            'value' => 'Company Start Investment',
+            'value' => 'Company Investment',
         ]);
 
         Type::factory()->create([
