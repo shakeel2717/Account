@@ -111,6 +111,10 @@ class DatabaseSeeder extends Seeder
             'value' => 'Office Rental 3M',
         ]);
 
+        Type::factory()->create([
+            'value' => 'Partners Share',
+        ]);
+
 
         VisaProfit::factory()->create([
             'customer_id' => 1,
