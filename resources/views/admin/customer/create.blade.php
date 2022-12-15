@@ -32,6 +32,7 @@
                                 <option value="customer">Customer</option>
                                 <option value="vendor">Vendor</option>
                                 <option value="employee">Employee</option>
+                                <option value="partner">Business Partner</option>
                             </select>
                         </div>
                         <div class="form-group">

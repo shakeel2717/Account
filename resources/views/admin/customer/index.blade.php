@@ -11,6 +11,6 @@
 
 @section('content')
 <div class="nk-block">
-    <livewire:admin.all-customer :type="array('customer','vendor','employee')" />
+    <livewire:admin.all-customer :type="array('customer','vendor','employee','partner')" />
 </div>
 @endsection

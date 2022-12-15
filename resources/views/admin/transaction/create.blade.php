@@ -32,11 +32,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="customer_id">Select Customer</label>
+                            <label for="customer_id">Select Person</label>
                             <select name="customer_id" id="customer_id" class="form-control">
                                 <option value="">Select Customer</option>
                                 @foreach ($customers as $customer)
-                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                <option class="text-uppercase" value="{{ $customer->id }}">{{ $customer->name }} | ({{ $customer->type }})</option>
                                 @endforeach
                             </select>
                         </div>

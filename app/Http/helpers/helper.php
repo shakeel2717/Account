@@ -17,3 +17,16 @@ function totalExpense()
     $out = Transaction::where('sum', 'out')->sum('amount');
     return $out;
 }
+
+
+function totalSalary()
+{
+    $out = Transaction::where('sum', 'out')->where('type', 'salary')->sum('amount');
+    return $out;
+}
+
+function totalOfficeExpense()
+{
+    $out = Transaction::where('sum', 'out')->where('type', 'Office Expense')->sum('amount');
+    return $out;
+}

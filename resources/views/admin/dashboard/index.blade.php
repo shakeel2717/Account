@@ -24,6 +24,24 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Office Expense</h4>
+                    <br>
+                    <h2>{{ totalExpense() }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Total Salary Paid</h4>
+                    <br>
+                    <h2>{{ totalSalary() }}</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
