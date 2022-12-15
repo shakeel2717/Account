@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Customer;
 use App\Models\Gateway;
 use App\Models\Group;
 use App\Models\Setting;
@@ -11,6 +12,7 @@ use App\Models\Slab;
 use App\Models\Team;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\VisaProfit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,6 +35,28 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('asdfasdf'),
         ]);
+
+        Customer::factory()->create([
+            'type' => 'partner',
+            'name' => 'Abid',
+            'Phone' => "+1212121212",
+            'address' => "Pakistan",
+        ]);
+
+        Customer::factory()->create([
+            'type' => 'partner',
+            'name' => 'Shakeel',
+            'Phone' => "+1212121212",
+            'address' => "Pakistan",
+        ]);
+
+        Customer::factory()->create([
+            'type' => 'partner',
+            'name' => 'Atif',
+            'Phone' => "+1212121212",
+            'address' => "Pakistan",
+        ]);
+
 
         Setting::factory()->create([
             'key' => 'withdraw_fees',
@@ -85,6 +109,22 @@ class DatabaseSeeder extends Seeder
 
         Type::factory()->create([
             'value' => 'Office Rental 3M',
+        ]);
+
+
+        VisaProfit::factory()->create([
+            'customer_id' => 1,
+            'amount' => 35,
+        ]);
+
+        VisaProfit::factory()->create([
+            'customer_id' => 2,
+            'amount' => 35,
+        ]);
+
+        VisaProfit::factory()->create([
+            'customer_id' => 3,
+            'amount' => 30,
         ]);
     }
 }

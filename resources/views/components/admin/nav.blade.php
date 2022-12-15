@@ -39,6 +39,15 @@
         </a>
     </li>
     <li class="nk-menu-heading">
+        <h6 class="overline-title text-primary-alt">Visa System</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('admin.visa.create') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">Add Visa Job</span>
+        </a>
+    </li>
+    <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Salary</h6>
     </li>
     <li class="nk-menu-item">
