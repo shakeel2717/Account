@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Transaction;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -23,6 +25,14 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+     public function create()
+    {
+        $types = Type::get();
+        $customers = Customer::get();
+        return view('admin.transaction.create',compact('types','customers'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -31,7 +41,27 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'customer_id' => 'nullable|integer',
+            'type_id' => 'required|integer',
+            'reference' => 'required|string',
+            'amount' => 'required|numeric|',
+            'sum' => 'required|string',
+        ]);
+
+        $type = Type::find($validated['type_id']);
+
+        // adding transaction
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
+        $transaction->type = $type->value;
+        $transaction->reference = $validated['reference'];
+        $transaction->amount = $validated['amount'];
+        $transaction->sum = $validated['sum'];
+        $transaction->save();
+
+        return redirect()->back()->with('success', 'Transaction Added Successfully');
     }
 
     /**

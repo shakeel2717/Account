@@ -17,8 +17,6 @@ Route::redirect('/', '/login');
 
 Route::prefix('user/')->middleware('auth', 'user', 'verified')->name('user.')->group(function () {
     Route::resource('dashboard', DashboardController::class);
-    Route::resource('profile', ProfileController::class);
-    Route::resource('transaction', TransactionController::class);
 });
 
 require __DIR__ . '/auth.php';
