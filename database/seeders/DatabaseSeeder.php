@@ -34,27 +34,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('asdfasdf'),
         ]);
 
-        User::factory()->create([
-            'name' => 'Abid Ali',
-            'username' => 'abid',
-            'email' => 'abid@gmail.com',
-            'password' => Hash::make('asdfasdf'),
-        ]);
-
-        User::factory()->create([
-            'name' => 'Shakeel',
-            'username' => 'shakeel',
-            'email' => 'shakeel@gmail.com',
-            'password' => Hash::make('asdfasdf'),
-        ]);
-
-        User::factory()->create([
-            'name' => 'Atif',
-            'username' => 'atif',
-            'email' => 'atif@gmail.com',
-            'password' => Hash::make('asdfasdf'),
-        ]);
-
         Setting::factory()->create([
             'key' => 'withdraw_fees',
             'value' => 2,

@@ -27,6 +27,14 @@
                             <input type="text" name="address" id="address" placeholder="Customer Address" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label for="address">Person Type </label>
+                            <select name="type" id="type" class="form-control">
+                                <option value="customer">Customer</option>
+                                <option value="vendor">Vendor</option>
+                                <option value="employee">Employee</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <input type="submit" class="btn btn-lg btn-primary" value="Add Customer">
                         </div>
                     </form>

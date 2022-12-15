@@ -13,7 +13,7 @@ final class AllCustomer extends PowerGridComponent
 {
     use ActionButton;
 
-    public string $type;
+    public array $type;
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ final class AllCustomer extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Customer::query()->where('type', $this->type);
+        return Customer::query()->whereIn('type', $this->type);
     }
 
     /*

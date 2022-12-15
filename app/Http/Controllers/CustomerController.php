@@ -39,17 +39,18 @@ class CustomerController extends Controller
             'name' => 'required|string',
             'phone' => 'required|string',
             'address' => 'required|string',
+            'type' => 'required|string',
         ]);
 
         // storing this customer in to database
         $customer = new Customer();
-        $customer->type = 'customer';
+        $customer->type = $validated['type'];
         $customer->name = $validated['name'];
         $customer->phone = $validated['phone'];
         $customer->address = $validated['address'];
         $customer->save();
 
-        return redirect()->back()->with('success', 'Customer Added Successfully');
+        return redirect()->back()->with('success', 'Person Added Successfully');
     }
 
     /**

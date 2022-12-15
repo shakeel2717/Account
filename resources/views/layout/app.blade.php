@@ -75,13 +75,13 @@
                                                         <span class="sub-text">{{ auth()->user()->email }}</span>
                                                     </div>
                                                     <div class="user-action">
-                                                        <a class="btn btn-icon me-n2" href="{{ route('user.profile.index') }}"><em class="icon ni ni-setting"></em></a>
+                                                        <a class="btn btn-icon me-n2" href="#"><em class="icon ni ni-setting"></em></a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="{{ route('user.profile.index') }}"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
                                                     <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                 </ul>
                                             </div>

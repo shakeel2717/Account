@@ -24,33 +24,18 @@
         </a>
     </li>
     <li class="nk-menu-heading">
-        <h6 class="overline-title text-primary-alt">Customer</h6>
+        <h6 class="overline-title text-primary-alt">Person</h6>
     </li>
     <li class="nk-menu-item">
         <a href="{{ route('admin.customer.index') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-            <span class="nk-menu-text">All Customer</span>
+            <span class="nk-menu-text">All Person</span>
         </a>
     </li>
     <li class="nk-menu-item">
         <a href="{{ route('admin.customer.create') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-            <span class="nk-menu-text">Add Customer</span>
-        </a>
-    </li>
-    <li class="nk-menu-heading">
-        <h6 class="overline-title text-primary-alt">Vendors</h6>
-    </li>
-    <li class="nk-menu-item">
-        <a href="{{ route('admin.vendor.index') }}" class="nk-menu-link">
-            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-            <span class="nk-menu-text">All Vendors</span>
-        </a>
-    </li>
-    <li class="nk-menu-item">
-        <a href="{{ route('admin.vendor.create') }}" class="nk-menu-link">
-            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-            <span class="nk-menu-text">Add Vendor</span>
+            <span class="nk-menu-text">Add Person</span>
         </a>
     </li>
     <li class="nk-menu-heading">
