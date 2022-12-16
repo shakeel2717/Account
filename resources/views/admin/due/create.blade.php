@@ -27,13 +27,13 @@
                             <select name="customer_id" id="customer_id" class="form-control">
                                 <option value="">Select Customer</option>
                                 @foreach ($customers as $customer)
-                                <option class="text-uppercase" value="{{ $customer->id }}">{{ $customer->customer->name }} | ({{ number_format($customer->amount,2) }})</option>
+                                <option class="text-uppercase" value="{{ $customer->id }}">{{ $customer->customer->name }} | ({{ number_format($customer->amount,2) }}) | {{ ($customer->type == "payable") ? "[Payable]" : "[Receivable]" }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-lg btn-primary" value="Received Payment">
+                            <input type="submit" class="btn btn-lg btn-primary" value="Submit Due">
                         </div>
                     </form>
                 </div>

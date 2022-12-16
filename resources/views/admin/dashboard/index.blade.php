@@ -18,9 +18,9 @@
         <div class="col-md-4">
             <div class="card card-bordered mb-2">
                 <div class="card-body">
-                    <h4 class="title">Total Expense</h4>
+                    <h4 class="title">Total Out</h4>
                     <br>
-                    <h2>{{ totalExpense() }}</h2>
+                    <h2>{{ totalOut() }}</h2>
                 </div>
             </div>
         </div>
@@ -86,6 +86,15 @@
                     <h4 class="title">Due Receivable Funds</h4>
                     <br>
                     <h4>{{ number_format(duePayment(3),2) }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Due Payable Funds</h4>
+                    <br>
+                    <h4>{{ number_format(duePayablePayment(3),2) }}</h4>
                 </div>
             </div>
         </div>

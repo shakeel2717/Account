@@ -13,7 +13,7 @@ function setting($key)
 }
 
 
-function totalExpense()
+function totalOut()
 {
     $out = Transaction::where('sum', 'out')->sum('amount');
     return $out;
@@ -28,13 +28,19 @@ function totalVisa()
 
 function duePayment()
 {
-    $due = DuePayment::sum('amount');
+    $due = DuePayment::where('type', 'receivable')->sum('amount');
+    return $due;
+}
+
+function duePayablePayment()
+{
+    $due = DuePayment::where('type', 'payable')->sum('amount');
     return $due;
 }
 
 function totalIn()
 {
-    $in = Transaction::where('sum', 'in')->where('type','!=','Profit Share')->where('type','!=','Debit Received')->sum('amount');
+    $in = Transaction::where('sum', 'in')->where('type', '!=', 'Profit Share')->where('type', '!=', 'Debit Received')->sum('amount');
     return $in;
 }
 

@@ -52,19 +52,37 @@ class DueController extends Controller
         if ($duePayment->amount > $validated['amount']) {
             $duePayment->amount = $duePayment->amount - $validated['amount'];
             $duePayment->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->user()->id;
+            $transaction->customer_id = $duePayment->customer_id;
+            $transaction->amount = $validated['amount'];
+            $transaction->reference = $validated['reference'];
+            $transaction->type = 'Due Paid';
+            if ($duePayment->type == "payable") {
+                $transaction->sum = 'out';
+            } elseif ($duePayment->type == "receivable") {
+                $transaction->sum = 'in';
+            }
+            $transaction->save();
         } elseif ($duePayment->amount == $validated['amount']) {
+            $transaction = new Transaction();
+            if ($duePayment->type == "payable") {
+                $transaction->sum = 'out';
+            } elseif ($duePayment->type == "receivable") {
+                $transaction->sum = 'in';
+            }
+            $transaction->user_id = auth()->user()->id;
+            $transaction->customer_id = $duePayment->customer_id;
+            $transaction->amount = $validated['amount'];
+            $transaction->reference = $validated['reference'];
+            $transaction->type = 'Due Paid';
+            $transaction->save();
+
             $duePayment->delete();
         }
 
-        $transaction = new Transaction();
-        $transaction->user_id = auth()->user()->id;
-        $transaction->customer_id = $duePayment->customer_id;
-        $transaction->amount = $validated['amount'];
-        $transaction->reference = $validated['reference'];
-        $transaction->type = 'Debit Received';
-        $transaction->save();
-
-        return redirect()->back()->with('success', 'Payment Received Successfully!');
+        return redirect()->back()->with('success', 'Payment Submitted Successfully!');
     }
 
 
@@ -81,7 +99,17 @@ class DueController extends Controller
         $dueAmount->customer_id = $validated['customer_id'];
         $dueAmount->amount = $validated['amount'];
         $dueAmount->reference = $validated['reference'];
+        $dueAmount->type = "payable";
         $dueAmount->save();
+
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
+        $transaction->amount = $validated['amount'];
+        $transaction->reference = $validated['reference'];
+        $transaction->type = 'Company Loan';
+        $transaction->sum = 'in';
+        $transaction->save();
 
         return redirect()->back()->with('success', 'Company Loan Added');
     }

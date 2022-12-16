@@ -77,7 +77,17 @@ class VisaController extends Controller
             $dueAmount->visa_id = $visa->id;
             $dueAmount->customer_id = $validated['customer_id'];
             $dueAmount->amount = $validated['due'];
+            $dueAmount->type = "receivable";
             $dueAmount->save();
+
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->user()->id;
+            $transaction->customer_id = $validated['customer_id'];
+            $transaction->type = 'Service';
+            $transaction->reference = $validated['reference'];
+            $transaction->amount = $validated['amount'] - $validated['due'];
+            $transaction->sum = 'in';
+            $transaction->save();
         }
 
         return redirect()->back()->with('success', 'Visa Job Added');
