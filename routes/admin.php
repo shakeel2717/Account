@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\BetController;
 use App\Http\Controllers\admin\CommissionController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\DueController;
 use App\Http\Controllers\admin\FinanceController;
 use App\Http\Controllers\admin\SalaryController;
 use App\Http\Controllers\admin\TidController;
@@ -23,4 +24,5 @@ Route::prefix('admin/')->middleware('auth', 'admin', 'verified')->name('admin.')
     Route::resource('transaction', TransactionController::class);
     Route::resource('salary', SalaryController::class);
     Route::resource('visa', VisaController::class);
+    Route::resource('due', DueController::class);
 });

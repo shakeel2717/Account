@@ -1,9 +1,10 @@
 <?php
 
 use App\Models\Customer;
+use App\Models\DuePayment;
 use App\Models\Setting;
 use App\Models\Transaction;
-
+use App\Models\Visa;
 
 function setting($key)
 {
@@ -18,9 +19,22 @@ function totalExpense()
     return $out;
 }
 
+
+function totalVisa()
+{
+    $in = Visa::sum('amount');
+    return $in;
+}
+
+function duePayment()
+{
+    $due = DuePayment::sum('amount');
+    return $due;
+}
+
 function totalIn()
 {
-    $in = Transaction::where('sum', 'in')->sum('amount');
+    $in = Transaction::where('sum', 'in')->where('type','!=','Profit Share')->sum('amount');
     return $in;
 }
 

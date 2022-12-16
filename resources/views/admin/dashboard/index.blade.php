@@ -71,6 +71,25 @@
             </div>
         </div>
         <hr>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Total Service Business</h4>
+                    <br>
+                    <h4>{{ number_format(totalVisa(3),2) }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Due Receivable Funds</h4>
+                    <br>
+                    <h4>{{ number_format(duePayment(3),2) }}</h4>
+                </div>
+            </div>
+        </div>
+        <hr>
         @foreach ($types as $type)
         <div class="col-md-4">
             <div class="card card-bordered mb-2">

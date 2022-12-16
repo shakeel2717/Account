@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\DuePayment;
 use App\Models\Transaction;
 use App\Models\Visa;
 use App\Models\VisaProfit;
@@ -43,6 +44,7 @@ class VisaController extends Controller
             'reference' => 'nullable|string',
             'amount' => 'required|numeric',
             'charges' => 'required|numeric',
+            'due' => 'required|numeric',
             'customer_id' => 'required|integer'
         ]);
 
@@ -68,6 +70,15 @@ class VisaController extends Controller
         $visa->charges = $validated['charges'];
         $visa->reference = $validated['reference'];
         $visa->save();
+
+        if ($validated['due'] > 0) {
+            // adding due amount
+            $dueAmount = new DuePayment();
+            $dueAmount->visa_id = $visa->id;
+            $dueAmount->customer_id = $validated['customer_id'];
+            $dueAmount->amount = $validated['due'];
+            $dueAmount->save();
+        }
 
         return redirect()->back()->with('success', 'Visa Job Added');
     }
