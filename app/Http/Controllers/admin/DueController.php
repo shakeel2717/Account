@@ -17,7 +17,8 @@ class DueController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::get();
+        return view('admin.due.index', compact('customers'));
     }
 
     /**
@@ -64,6 +65,25 @@ class DueController extends Controller
         $transaction->save();
 
         return redirect()->back()->with('success', 'Payment Received Successfully!');
+    }
+
+
+    public function loan(Request $request)
+    {
+        $validated = $request->validate([
+            'amount' => 'required|numeric',
+            'customer_id' => 'required|integer',
+            'reference' => 'nullable|string',
+        ]);
+
+        // adding due amount
+        $dueAmount = new DuePayment();
+        $dueAmount->customer_id = $validated['customer_id'];
+        $dueAmount->amount = $validated['amount'];
+        $dueAmount->reference = $validated['reference'];
+        $dueAmount->save();
+
+        return redirect()->back()->with('success', 'Company Loan Added');
     }
 
     /**

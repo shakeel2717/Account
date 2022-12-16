@@ -24,5 +24,6 @@ Route::prefix('admin/')->middleware('auth', 'admin', 'verified')->name('admin.')
     Route::resource('transaction', TransactionController::class);
     Route::resource('salary', SalaryController::class);
     Route::resource('visa', VisaController::class);
+    Route::post('due/loan', [DueController::class,'loan'])->name('due.loan');
     Route::resource('due', DueController::class);
 });
