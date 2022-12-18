@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('visa_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
             $table->double('amount');
-            $table->string('reference')->nullable();
+            $table->text('reference')->nullable();
             $table->enum('type', ['payable', 'receivable']);
             $table->enum('status', ['due', 'paid']);
             $table->timestamps();

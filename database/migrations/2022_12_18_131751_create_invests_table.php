@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('visas', function (Blueprint $table) {
+        Schema::create('invests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
-            $table->text('reference')->nullable();
             $table->double('amount');
-            $table->double('charges');
+            $table->enum('sum', ['in', 'out']);
+            $table->text('reference')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('visas');
+        Schema::dropIfExists('invests');
     }
 };
