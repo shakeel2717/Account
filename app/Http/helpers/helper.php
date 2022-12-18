@@ -39,6 +39,12 @@ function totalVisa()
     return $in;
 }
 
+function totalVisaCharges()
+{
+    $in = Visa::sum('charges');
+    return $in;
+}
+
 function duePayment()
 {
     $due = DuePayment::where('type', 'receivable')->sum('amount');
