@@ -18,6 +18,15 @@
         <div class="col-md-4">
             <div class="card card-bordered mb-2">
                 <div class="card-body">
+                    <h4 class="title">Total Expense</h4>
+                    <br>
+                    <h2>{{ number_format(totalExpense(),2) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
                     <h4 class="title">Total Out</h4>
                     <br>
                     <h2>{{ totalOut() }}</h2>

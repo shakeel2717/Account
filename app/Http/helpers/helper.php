@@ -4,12 +4,25 @@ use App\Models\Customer;
 use App\Models\DuePayment;
 use App\Models\Setting;
 use App\Models\Transaction;
+use App\Models\Type;
 use App\Models\Visa;
 
 function setting($key)
 {
     $setting = Setting::where('key', $key)->first();
     return $setting->value;
+}
+
+
+function totalExpense()
+{
+    $fields = Type::get();
+    $total = 0;
+    foreach ($fields as $field) {
+        $query = Transaction::where('type', $field->value)->sum('amount');
+        $total += $query;
+    }
+    return $total;
 }
 
 
