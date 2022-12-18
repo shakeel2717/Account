@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <h4 class="title">Total Out</h4>
                     <br>
-                    <h2>{{ totalOut() }}</h2>
+                    <h2>{{ number_format(totalOut(),2) }}</h2>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <h4 class="title">Total In</h4>
                     <br>
-                    <h2>{{ totalIn() }}</h2>
+                    <h2>{{ number_format(totalIn(),2) }}</h2>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <h4 class="title">Total Salary Paid</h4>
                     <br>
-                    <h2>{{ totalSalary() }}</h2>
+                    <h2>{{ number_format(totalSalary(),2) }}</h2>
                 </div>
             </div>
         </div>

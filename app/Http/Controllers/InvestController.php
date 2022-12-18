@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Invest;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class InvestController extends Controller
@@ -51,6 +52,15 @@ class InvestController extends Controller
         $invest->sum = $validated['sum'];
         $invest->reference = $validated['reference'];
         $invest->save();
+
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
+        $transaction->type = "Company Investment";
+        $transaction->reference = $validated['reference'];
+        $transaction->amount = $validated['amount'];
+        $transaction->sum = $validated['sum'];
+        $transaction->save();
 
         return redirect()->back()->with('success', 'Investment Added Successfully');
     }

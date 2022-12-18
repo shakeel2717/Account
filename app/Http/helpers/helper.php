@@ -20,7 +20,7 @@ function totalExpense()
     $fields = Type::get();
     $total = 0;
     foreach ($fields as $field) {
-        $query = Transaction::where('type', $field->value)->sum('amount');
+        $query = Transaction::where('type', $field->value)->where('sum','out')->sum('amount');
         $total += $query;
     }
     return $total;
