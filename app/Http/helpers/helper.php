@@ -2,6 +2,7 @@
 
 use App\Models\Customer;
 use App\Models\DuePayment;
+use App\Models\Invest;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\Type;
@@ -89,4 +90,12 @@ function typeBalance($type)
 {
     $out = Transaction::where('sum', 'out')->where('type', $type)->sum('amount');
     return $out;
+}
+
+
+function invest($customer_id)
+{
+    $in = Invest::where('customer_id', $customer_id)->where('sum', 'in')->sum('amount');
+    $out = Invest::where('customer_id', $customer_id)->where('sum', 'out')->sum('amount');
+    return $in - $out;
 }

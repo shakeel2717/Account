@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\TransactionsController;
 use App\Http\Controllers\admin\WithdrawController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InvestController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VisaController;
@@ -24,6 +25,7 @@ Route::prefix('admin/')->middleware('auth', 'admin', 'verified')->name('admin.')
     Route::resource('transaction', TransactionController::class);
     Route::resource('salary', SalaryController::class);
     Route::resource('visa', VisaController::class);
-    Route::post('due/loan', [DueController::class,'loan'])->name('due.loan');
+    Route::post('due/loan', [DueController::class, 'loan'])->name('due.loan');
     Route::resource('due', DueController::class);
+    Route::resource('invest', InvestController::class);
 });

@@ -119,6 +119,34 @@
             </div>
         </div>
         @endforeach
+        <hr>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Abid Investment</h4>
+                    <br>
+                    <h2>{{ number_format(invest(1),2) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Shakeel Investment</h4>
+                    <br>
+                    <h2>{{ number_format(invest(2),2) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Atif Investment</h4>
+                    <br>
+                    <h2>{{ number_format(invest(3),2) }}</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

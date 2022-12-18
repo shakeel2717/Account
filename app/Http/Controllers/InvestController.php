@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Invest;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class InvestController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::where('type', 'partner')->get();
+        return view('admin.invest.index', compact('customers'));
     }
 
     /**
@@ -35,7 +37,22 @@ class InvestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'reference' => 'nullable|string',
+            'amount' => 'required|numeric',
+            'sum' => 'required|string',
+            'customer_id' => 'required|integer',
+        ]);
+
+        // adding investment
+        $invest = new Invest();
+        $invest->customer_id = $validated['customer_id'];
+        $invest->amount = $validated['amount'];
+        $invest->sum = $validated['sum'];
+        $invest->reference = $validated['reference'];
+        $invest->save();
+
+        return redirect()->back()->with('success', 'Investment Added Successfully');
     }
 
     /**
