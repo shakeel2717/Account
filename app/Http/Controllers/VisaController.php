@@ -45,7 +45,8 @@ class VisaController extends Controller
             'amount' => 'required|numeric',
             'charges' => 'required|numeric',
             'due' => 'required|numeric',
-            'customer_id' => 'required|integer'
+            'customer_id' => 'required|integer',
+            'type' => 'required|string'
         ]);
 
         $profit = $validated['amount'] - $validated['charges'];
@@ -68,6 +69,7 @@ class VisaController extends Controller
         $visa->customer_id = $validated['customer_id'];
         $visa->amount = $validated['amount'];
         $visa->charges = $validated['charges'];
+        $visa->type = $validated['type'];
         $visa->reference = $validated['reference'];
         $visa->save();
 
@@ -78,6 +80,15 @@ class VisaController extends Controller
         $transaction->reference = $validated['reference'];
         $transaction->amount = $validated['amount'] - $validated['due'];
         $transaction->sum = 'in';
+        $transaction->save();
+
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
+        $transaction->type = $validated['type'] . ' Charges';
+        $transaction->reference = $validated['reference'];
+        $transaction->amount = $validated['charges'];
+        $transaction->sum = 'out';
         $transaction->save();
 
         if ($validated['due'] > 0) {
@@ -95,7 +106,7 @@ class VisaController extends Controller
             $transaction->type = 'Service';
             $transaction->reference = $validated['reference'];
             $transaction->amount = $validated['amount'] - $validated['due'];
-            $transaction->sum = 'in';
+            $transaction->sum = 'out';
             $transaction->save();
         }
 

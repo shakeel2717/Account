@@ -15,6 +15,15 @@
                     <form action="{{ route('admin.visa.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
+                            <label for="type">Service Type</label>
+                            <select name="type" id="type" class="form-control">
+                                <option value="Visa">Visa</option>
+                                <option value="Website Development">Website Development</option>
+                                <option value="CCTV Project">CCTV Project</option>
+                                <option value="Other Service">Other Service</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="reference">Reference</label>
                             <input type="text" name="reference" id="reference" placeholder="Transaction Reference" class="form-control">
                         </div>

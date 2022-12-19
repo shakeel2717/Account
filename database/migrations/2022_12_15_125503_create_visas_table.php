@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
             $table->text('reference')->nullable();
+            $table->string('type');
             $table->double('amount');
             $table->double('charges');
             $table->timestamps();
