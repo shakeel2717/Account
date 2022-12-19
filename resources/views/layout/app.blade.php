@@ -15,7 +15,7 @@
     @powerGridStyles
 </head>
 
-<body class="nk-body bg-white npc-default has-aside ">
+<body class="nk-body bg-white npc-default has-aside dark-mode">
     <div class="nk-app-root">
         <div class="nk-main ">
             <div class="nk-wrap ">

@@ -83,9 +83,19 @@
         <div class="col-md-4">
             <div class="card card-bordered mb-2">
                 <div class="card-body">
-                    <h4 class="title">Total Service Pay</h4>
+                    <h4 class="title">Total Visa Only</h4>
                     <br>
                     <h4>{{ number_format(totalVisaCharges(3),2) }} | {{ number_format(totalVisa(3),2) }}</h4>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Total Service Pay</h4>
+                    <br>
+                    <h4>{{ number_format(totalServiceCharges(3),2) }} | {{ number_format(totalService(3),2) }}</h4>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@ function totalExpense()
     $fields = Type::get();
     $total = 0;
     foreach ($fields as $field) {
-        $query = Transaction::where('type', $field->value)->where('sum','out')->sum('amount');
+        $query = Transaction::where('type', $field->value)->where('sum', 'out')->sum('amount');
         $total += $query;
     }
     return $total;
@@ -34,13 +34,26 @@ function totalOut()
 }
 
 
-function totalVisa()
+function totalService()
 {
     $in = Visa::sum('amount');
     return $in;
 }
 
+function totalVisa()
+{
+    $in = Visa::where('type', 'Visa')->sum('amount');
+    return $in;
+}
+
+
 function totalVisaCharges()
+{
+    $in = Visa::where('type', 'Visa')->sum('charges');
+    return $in;
+}
+
+function totalServiceCharges()
 {
     $in = Visa::sum('charges');
     return $in;
