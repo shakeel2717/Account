@@ -55,6 +55,7 @@ class InvestController extends Controller
 
         $transaction = new Transaction();
         $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
         $transaction->type = "Company Investment";
         $transaction->reference = $validated['reference'];
         $transaction->amount = $validated['amount'];
