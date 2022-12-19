@@ -73,14 +73,14 @@ class VisaController extends Controller
         $visa->reference = $validated['reference'];
         $visa->save();
 
-        $transaction = new Transaction();
-        $transaction->user_id = auth()->user()->id;
-        $transaction->customer_id = $validated['customer_id'];
-        $transaction->type = 'Service';
-        $transaction->reference = $validated['reference'];
-        $transaction->amount = $validated['amount'] - $validated['due'];
-        $transaction->sum = 'in';
-        $transaction->save();
+        // $transaction = new Transaction();
+        // $transaction->user_id = auth()->user()->id;
+        // $transaction->customer_id = $validated['customer_id'];
+        // $transaction->type = 'Service';
+        // $transaction->reference = $validated['reference'];
+        // $transaction->amount = $validated['amount'] - $validated['due'];
+        // $transaction->sum = 'in';
+        // $transaction->save();
 
         $transaction = new Transaction();
         $transaction->user_id = auth()->user()->id;
