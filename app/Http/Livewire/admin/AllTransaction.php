@@ -90,6 +90,7 @@ final class AllTransaction extends PowerGridComponent
                 return $model->user->name;
             })
             ->addColumn('amount')
+            ->addColumn('type')
             ->addColumn('reference')
             ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->addColumn('updated_at_formatted', fn (Transaction $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
@@ -115,6 +116,10 @@ final class AllTransaction extends PowerGridComponent
             Column::make('Added By', 'user'),
 
             Column::make('AMOUNT', 'amount')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('TYPE', 'type')
                 ->sortable()
                 ->searchable(),
 
