@@ -13,6 +13,9 @@ final class AllTransaction extends PowerGridComponent
 {
     use ActionButton;
 
+    public $amount;
+    public $reference;
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -117,6 +120,7 @@ final class AllTransaction extends PowerGridComponent
 
             Column::make('AMOUNT', 'amount')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
             Column::make('TYPE', 'type')
@@ -130,6 +134,7 @@ final class AllTransaction extends PowerGridComponent
 
             Column::make('REFERENCE', 'reference')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
@@ -153,21 +158,45 @@ final class AllTransaction extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('transaction.edit', ['transaction' => 'id']),
+        return [
+            Button::make('delete', 'Delete')
+                ->class('btn btn-danger btn-sm')
+                ->emit('delete', ['id' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('transaction.destroy', ['transaction' => 'id'])
-               ->method('delete')
+            //    Button::make('destroy', 'Delete')
+            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+            //        ->route('transaction.destroy', ['transaction' => 'id'])
+            //        ->method('delete')
         ];
     }
-    */
+
+    protected function getListeners()
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'delete',
+            ]
+        );
+    }
+
+
+    public function delete($id)
+    {
+        $transaction = Transaction::find($id['id']);
+        $transaction->delete();
+    }
+
+
+    public function onUpdatedEditable(string $id, string $field, string $value): void
+    {
+        Transaction::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
 
     /*
     |--------------------------------------------------------------------------
