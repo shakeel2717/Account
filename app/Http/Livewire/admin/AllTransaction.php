@@ -87,7 +87,7 @@ final class AllTransaction extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('user', function (Transaction $model) {
-                return $model->user->name;
+                return $model->customer->name;
             })
             ->addColumn('amount')
             ->addColumn('type')
