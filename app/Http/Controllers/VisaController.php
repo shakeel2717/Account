@@ -52,6 +52,24 @@ class VisaController extends Controller
         $profit = $validated['amount'] - $validated['charges'];
         $customer = Customer::find($validated['customer_id']);
 
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
+        $transaction->type = $validated['type'] . ' Service';
+        $transaction->reference = $validated['reference'];
+        $transaction->amount = $validated['amount'];
+        $transaction->sum = 'in';
+        $transaction->save();
+
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->customer_id = $validated['customer_id'];
+        $transaction->type = $validated['type'] . ' Service Charges';
+        $transaction->reference = $validated['reference'];
+        $transaction->amount = $validated['charges'];
+        $transaction->sum = 'out';
+        $transaction->save();
+
         $partners = VisaProfit::get();
         foreach ($partners as $partner) {
             $thisUserProfitAmount = $profit * $partner->amount / 100;
@@ -73,24 +91,6 @@ class VisaController extends Controller
         $visa->reference = $validated['reference'];
         $visa->save();
 
-        // $transaction = new Transaction();
-        // $transaction->user_id = auth()->user()->id;
-        // $transaction->customer_id = $validated['customer_id'];
-        // $transaction->type = 'Service';
-        // $transaction->reference = $validated['reference'];
-        // $transaction->amount = $validated['amount'] - $validated['due'];
-        // $transaction->sum = 'in';
-        // $transaction->save();
-
-        $transaction = new Transaction();
-        $transaction->user_id = auth()->user()->id;
-        $transaction->customer_id = $validated['customer_id'];
-        $transaction->type = $validated['type'] . ' Charges';
-        $transaction->reference = $validated['reference'];
-        $transaction->amount = $validated['charges'];
-        $transaction->sum = 'out';
-        $transaction->save();
-
         if ($validated['due'] > 0) {
             // adding due amount
             $dueAmount = new DuePayment();
@@ -99,15 +99,6 @@ class VisaController extends Controller
             $dueAmount->amount = $validated['due'];
             $dueAmount->type = "receivable";
             $dueAmount->save();
-
-            $transaction = new Transaction();
-            $transaction->user_id = auth()->user()->id;
-            $transaction->customer_id = $validated['customer_id'];
-            $transaction->type = 'Service';
-            $transaction->reference = $validated['reference'];
-            $transaction->amount = $validated['amount'] - $validated['due'];
-            $transaction->sum = 'out';
-            $transaction->save();
         }
 
         return redirect()->back()->with('success', 'Visa Job Added');

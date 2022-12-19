@@ -60,7 +60,7 @@ function duePayablePayment()
 
 function totalIn()
 {
-    $in = Transaction::where('sum', 'in')->where('type', '!=', 'Profit Share')->where('type', '!=', 'Debit Received')->sum('amount');
+    $in = Transaction::where('sum', 'in')->where('type', '!=', 'Profit Share')->where('type', '!=', 'Due Paid')->sum('amount');
     return $in;
 }
 
