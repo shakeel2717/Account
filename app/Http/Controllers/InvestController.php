@@ -60,6 +60,7 @@ class InvestController extends Controller
         $transaction->reference = $validated['reference'];
         $transaction->amount = $validated['amount'];
         $transaction->sum = $validated['sum'];
+        $transaction->invest_id = $invest->id;
         $transaction->save();
 
         return redirect()->back()->with('success', 'Investment Added Successfully');

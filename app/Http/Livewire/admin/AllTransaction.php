@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\admin;
 
+use App\Models\Invest;
 use App\Models\Transaction;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -56,9 +57,8 @@ final class AllTransaction extends PowerGridComponent
     {
         if (isset($this->type)) {
             return Transaction::query()->where('type', $this->type);
-        } else{
+        } else {
             return Transaction::query();
-
         }
     }
 
@@ -193,6 +193,11 @@ final class AllTransaction extends PowerGridComponent
     public function delete($id)
     {
         $transaction = Transaction::find($id['id']);
+        // checking investment
+        if ($transaction->invest_id != "") {
+            $invest = Invest::find($transaction->invest_id);
+            $invest->delete();
+        }
         $transaction->delete();
     }
 

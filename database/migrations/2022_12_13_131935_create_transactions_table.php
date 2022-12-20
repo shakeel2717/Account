@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('reference')->nullable();
             $table->double('amount');
             $table->string('type');
+            $table->foreignId('invest_id')->nullable()->constrained()->onDelete('cascade');
             $table->enum('sum', ['in', 'out']);
             $table->timestamps();
         });
