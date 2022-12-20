@@ -15,6 +15,15 @@
                     <form action="{{ route('admin.transaction.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
+                            <label for="customer_id">Select Person</label>
+                            <select name="customer_id" id="customer_id" class="form-control">
+                                <option value="">Select Customer</option>
+                                @foreach ($customers as $customer)
+                                <option class="text-uppercase" value="{{ $customer->id }}">{{ $customer->name }} | ({{ $customer->type }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="reference">Reference</label>
                             <input type="text" name="reference" id="reference" placeholder="Transaction Reference" class="form-control">
                         </div>
@@ -28,15 +37,6 @@
                                 <option value="">Select Transaction Type</option>
                                 @foreach ($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->value }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="customer_id">Select Person</label>
-                            <select name="customer_id" id="customer_id" class="form-control">
-                                <option value="">Select Customer</option>
-                                @foreach ($customers as $customer)
-                                <option class="text-uppercase" value="{{ $customer->id }}">{{ $customer->name }} | ({{ $customer->type }})</option>
                                 @endforeach
                             </select>
                         </div>
