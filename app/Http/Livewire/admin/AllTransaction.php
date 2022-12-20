@@ -15,6 +15,7 @@ final class AllTransaction extends PowerGridComponent
 
     public $amount;
     public $reference;
+    public string $type;
 
     /*
     |--------------------------------------------------------------------------
@@ -53,7 +54,12 @@ final class AllTransaction extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Transaction::query();
+        if (isset($this->type)) {
+            return Transaction::query()->where('type', $this->type);
+        } else{
+            return Transaction::query();
+
+        }
     }
 
     /*
