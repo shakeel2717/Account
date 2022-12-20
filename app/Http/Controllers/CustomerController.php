@@ -40,6 +40,7 @@ class CustomerController extends Controller
             'phone' => 'required|string',
             'address' => 'required|string',
             'type' => 'required|string',
+            'salary' => 'nullable|numeric',
         ]);
 
         // storing this customer in to database
@@ -47,6 +48,7 @@ class CustomerController extends Controller
         $customer->type = $validated['type'];
         $customer->name = $validated['name'];
         $customer->phone = $validated['phone'];
+        $customer->salary = $validated['salary'];
         $customer->address = $validated['address'];
         $customer->save();
 

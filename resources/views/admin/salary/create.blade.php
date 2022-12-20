@@ -15,16 +15,16 @@
                     <form action="{{ route('admin.salary.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="amount">Salary Amount</label>
-                            <input type="text" name="amount" id="amount" placeholder="Salary Amount" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label for="amount">Select Employee</label>
                             <select name="employee_id" id="employee_id" class="form-control">
                                 @foreach ($employees as $employee)
-                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                <option value="{{ $employee->id }}">{{ $employee->name }} | {{ number_format($employee->salary,2) }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Salary Amount</label>
+                            <input type="text" name="amount" id="amount" placeholder="Salary Amount" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-lg btn-primary" value="Add Salary">
