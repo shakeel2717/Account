@@ -57,6 +57,13 @@ class DatabaseSeeder extends Seeder
             'address' => "Pakistan",
         ]);
 
+        Customer::factory()->create([
+            'type' => 'partner',
+            'name' => 'Donation',
+            'Phone' => "+1212121212",
+            'address' => "Pakistan",
+        ]);
+
 
         Setting::factory()->create([
             'key' => 'withdraw_fees',
@@ -118,17 +125,22 @@ class DatabaseSeeder extends Seeder
 
         VisaProfit::factory()->create([
             'customer_id' => 1,
-            'amount' => 35,
+            'amount' => 31.5,
         ]);
 
         VisaProfit::factory()->create([
             'customer_id' => 2,
-            'amount' => 35,
+            'amount' => 31.5,
         ]);
 
         VisaProfit::factory()->create([
             'customer_id' => 3,
-            'amount' => 30,
+            'amount' => 27,
+        ]);
+
+        VisaProfit::factory()->create([
+            'customer_id' => 4,
+            'amount' => 10,
         ]);
     }
 }

@@ -86,8 +86,8 @@ function totalSalary()
 
 function balance($partner_id)
 {
-    $in = Transaction::where('sum', 'in')->where('customer_id', $partner_id)->where('type','Profit Share')->sum('amount');
-    $out = Transaction::where('sum', 'out')->where('customer_id', $partner_id)->where('type','Profit Share')->sum('amount');
+    $in = Transaction::where('sum', 'in')->where('customer_id', $partner_id)->where('type', 'Profit Share')->sum('amount');
+    $out = Transaction::where('sum', 'out')->where('customer_id', $partner_id)->where('type', 'Profit Share')->sum('amount');
     return $in - $out;
 }
 
@@ -101,8 +101,9 @@ function totalPaid($partner_id)
 
 function typeBalance($type)
 {
+    $in = Transaction::where('sum', 'in')->where('type', $type)->sum('amount');
     $out = Transaction::where('sum', 'out')->where('type', $type)->sum('amount');
-    return $out;
+    return $in - $out;
 }
 
 

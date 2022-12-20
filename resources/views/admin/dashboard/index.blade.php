@@ -79,6 +79,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card card-bordered mb-2">
+                <div class="card-body">
+                    <h4 class="title">Donation</h4>
+                    <br>
+                    <h4>{{ number_format(balance(4),2) }} | {{ number_format(totalPaid(4),2) }}</h4>
+                </div>
+            </div>
+        </div>
         <hr>
         <div class="col-md-4">
             <div class="card card-bordered mb-2">

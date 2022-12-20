@@ -73,12 +73,27 @@ class VisaController extends Controller
         $partners = VisaProfit::get();
         foreach ($partners as $partner) {
             $thisUserProfitAmount = $profit * $partner->amount / 100;
+
+            // detecting this user 10% amount for donation
+            $donation = 10;
+            $donationAmount = $thisUserProfitAmount * $donation / 100;
+
             $transaction = new Transaction();
             $transaction->user_id = auth()->user()->id;
             $transaction->customer_id = $partner->id;
             $transaction->type = 'Profit Share';
             $transaction->reference = $validated['reference'];
-            $transaction->amount = $thisUserProfitAmount;
+            $transaction->amount = $thisUserProfitAmount - $donationAmount;
+            $transaction->sum = 'in';
+            $transaction->save();
+
+            // adding donation
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->user()->id;
+            $transaction->customer_id = $partner->id;
+            $transaction->type = 'Donation';
+            $transaction->reference = $validated['reference'];
+            $transaction->amount = $donationAmount;
             $transaction->sum = 'in';
             $transaction->save();
         }
