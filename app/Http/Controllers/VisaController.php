@@ -86,16 +86,6 @@ class VisaController extends Controller
             $transaction->amount = $thisUserProfitAmount - $donationAmount;
             $transaction->sum = 'in';
             $transaction->save();
-
-            // adding donation
-            $transaction = new Transaction();
-            $transaction->user_id = auth()->user()->id;
-            $transaction->customer_id = $partner->id;
-            $transaction->type = 'Donation';
-            $transaction->reference = $validated['reference'];
-            $transaction->amount = $donationAmount;
-            $transaction->sum = 'in';
-            $transaction->save();
         }
 
         $visa = new Visa();
