@@ -125,17 +125,17 @@ class DatabaseSeeder extends Seeder
 
         VisaProfit::factory()->create([
             'customer_id' => 1,
-            'amount' => 31.5,
+            'amount' => 30,
         ]);
 
         VisaProfit::factory()->create([
             'customer_id' => 2,
-            'amount' => 31.5,
+            'amount' => 30,
         ]);
 
         VisaProfit::factory()->create([
             'customer_id' => 3,
-            'amount' => 27,
+            'amount' => 30,
         ]);
 
         VisaProfit::factory()->create([
