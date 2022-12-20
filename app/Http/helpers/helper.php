@@ -86,8 +86,8 @@ function totalSalary()
 
 function balance($partner_id)
 {
-    $in = Transaction::where('sum', 'in')->where('customer_id', $partner_id)->sum('amount');
-    $out = Transaction::where('sum', 'out')->where('customer_id', $partner_id)->sum('amount');
+    $in = Transaction::where('sum', 'in')->where('customer_id', $partner_id)->where('type','Profit Share')->sum('amount');
+    $out = Transaction::where('sum', 'out')->where('customer_id', $partner_id)->where('type','Profit Share')->sum('amount');
     return $in - $out;
 }
 
