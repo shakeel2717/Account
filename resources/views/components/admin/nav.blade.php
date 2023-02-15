@@ -48,6 +48,12 @@
         </a>
     </li>
     <li class="nk-menu-item">
+        <a href="{{ route('admin.visa.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+            <span class="nk-menu-text">All Service Jobs</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
         <a href="{{ route('admin.due.index') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
             <span class="nk-menu-text">Company Loan (Payable)</span>

@@ -13,7 +13,13 @@ class Visa extends Model
     protected $fillable = [
         'customer_id',
         'reference',
+        'type',
         'amount',
         'charges',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
